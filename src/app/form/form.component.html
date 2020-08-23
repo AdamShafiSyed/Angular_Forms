@@ -1,0 +1,61 @@
+
+<h2>Reactive Forms </h2>
+<form [formGroup]='form' (ngSubmit)="processForm()">
+<div class="form-group" formArrayName='addresses'>
+  <div *ngFor="let address of form.controls.addresses['controls']; let i= index;"> 
+<div class="panel">
+  <div class="panel-heading">
+<span class="text-info">FORM #{{i+1}}</span>
+<span (click)='removeForm()' class="float-right  btn btn-danger" *ngIf="form.controls.addresses.length > 1">X</span>
+  </div>
+  <div class="panel-body" [formGroupName]="i">
+    <div class="form-group">
+      <label>FirstName</label>
+        <input type="text" class="form-control" formControlName='fname' required>
+    </div>
+    <div class="form-group">
+        <label>LastName  </label><br>
+          <input type="text" class="form-control" formControlName='lname' required>
+      </div>
+
+      <div class="form-group">
+          <label>City</label><br>
+            <input type="text" class="form-control" formControlName='city' required>
+        </div>
+    
+        <div class="form-group">
+            <label>State</label><br>
+              <input type="text" class="form-control" formControlName='state' required>
+         </div>          
+      </div>
+  </div>
+</div>
+  </div>
+  <div>
+      <button (click)="addForms()" [disabled]="!form.valid" class="btn btn-primary text-white ml-4">Add New Form</button>
+      <button type="submit" [disabled]="!form.valid" class="btn btn-primary ml-3">Submit</button>
+  
+    </div>
+ 
+</form>
+<hr>
+<table class="table">
+  <thead>
+    <tr>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>City</th>
+      <th>State</th>
+    </tr>
+  </thead>
+  <tbody *ngFor="let x of Data; let i= index">
+    <tr>
+    <td>{{x.fname  }}</td>
+    <td>{{x.lname }}</td>
+    <td>{{x.city }}</td>
+    <td>{{x.state}}</td>
+    <td class="btn btn-danger" (click)="removeData(i)">X</td>
+    </tr>
+  </tbody>
+</table>
+
