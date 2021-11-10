@@ -4,11 +4,16 @@ import {ReactiveFormsModule, FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { FormComponent } from './form/form.component';
-
+import { TemplateFormComponent } from './template-form/template-form.component';
+import { ReactiveFormComponent } from './reactive-form/reactive-form.component';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 @NgModule({
   declarations: [
     AppComponent,
-    FormComponent
+    FormComponent,
+    TemplateFormComponent,
+    ReactiveFormComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,

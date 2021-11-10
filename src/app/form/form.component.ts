@@ -11,30 +11,31 @@ Data = [];
    constructor(private fb: FormBuilder) { }
 form: FormGroup;
   ngOnInit() {
-this.form = this.fb.group({
-  addresses: this.fb.array([
-    this.fb.group({
-      fname: ['', Validators.required],
-      lname: ['', Validators.required],
-      city: ['', Validators.required],
-      state: ['', Validators.required]
-    })
-  ])
-}) ;
+      this.form = this.fb.group({
+        addresses: this.fb.array([
+          this.fb.group({
+            fname: ['', Validators.required],
+            lname: ['', Validators.required],
+            city: ['', Validators.required],
+            state: ['', Validators.required]
+          })
+        ])
+      }) ;
+  }
+
+  get addresses() {
+    return this.form.get('addresses') as FormArray;
   }
 addForms() {
-  const address = <FormArray> this.form.get('addresses');
-  address.push(this.fb.group({
+  this.addresses.push(this.fb.group({
     fname: ['', Validators.required],
     lname: ['', Validators.required],
     city: ['', Validators.required],
     state: ['', Validators.required]
   }));
 }
-removeForm() {
-  const address = <FormArray> this.form.get('addresses');
-address.removeAt(1);
-
+removeForm(index) {
+  this.addresses.removeAt(index);
 }
 processForm() {
   this.Data = [];
